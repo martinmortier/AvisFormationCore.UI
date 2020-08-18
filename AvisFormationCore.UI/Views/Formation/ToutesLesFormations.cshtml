@@ -7,7 +7,10 @@
 
 @foreach (var formation in Model)
 {
-    <p>Nom de la formation : @formation.Nom</p>
+    <p>Nom de la formation :</p>
+    <a asp-controller="Formation"
+       asp-action="DetailsFormation" 
+       asp-route-idFormation="@formation.Id">@formation.Nom</a>
     <p>Description : @formation.Description</p>
     <br />
 }
