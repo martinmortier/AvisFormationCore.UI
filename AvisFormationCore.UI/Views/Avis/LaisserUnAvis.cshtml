@@ -1,15 +1,19 @@
-﻿@model Data.Formation
+﻿@model LaisserUnAvisViewModel
 @{
-    ViewData["Title"] = "Laisser un avis sur la formation: "+Model.Nom;
+    ViewData["Title"] = "Laisser un avis sur la formation: "+Model.nom;
 }
 
-<h1>Laisser un avis sur la formation: @Model.Nom</h1>
+<h1>Laisser un avis sur la formation: @Model.NomFormation</h1>
 <p>Merci de compléter les champs ci dessous:</p>
 <form action="/Avis/SaveComment" method="post">
-    <input type="text" name="nom"/>
+         @*@Html.ValidationSummary()*@
+     <div asp-validation-summary="All"></div> @*Affiche toutes les erreurs des restrictions*@
+    <br />
+                
+    <input type="text" name="nom" value="@Model.NomFormation" />
     <br />
     <p>Merci d'écrire votre avis ci dessous : </p>
-    <textarea cols="5" name="commentaire"></textarea>
+    <textarea cols="5" name="commentaire">@Model.commentaire</textarea>
     <select name="note">
         <option>1</option>
         <option>2</option>
@@ -17,5 +21,6 @@
         <option>4</option>
         <option>5</option>
     </select>
-    <input type="button" value="Poster votre avis" />
+    <input type="submit" value="Poster votre avis" />
+    <input type="hidden" name="idFormation" value="@Model.idFormation" />
 </form>
