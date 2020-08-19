@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using AvisFormationCore.UI.Models;
+using Data;
 
 namespace AvisFormationCore.UI.Controllers
 {
@@ -20,7 +21,18 @@ namespace AvisFormationCore.UI.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            FormationMemoryRepository repository = new FormationMemoryRepository();
+            List<Formation> listFormations = repository.GetFormations(4);
+
+            var list = Enumerable.Range(0, 500).ToList();
+            var listePaire = list.Where(nb => nb % 2 == 0);
+            var listeValeur = list.FirstOrDefault(nb => nb == 250);
+            var listeDivisepar2 = list.Select(nb => nb / 2);
+            foreach(var i in listePaire)
+            {
+                Debug.WriteLine(i);
+            }
+            return View(listFormations);
         }
     }
 }

@@ -20,6 +20,11 @@ namespace Data
             return _formations;
         }
 
+        public List<Formation> GetFormations(int nombre)
+        {
+            return _formations.OrderBy(qu => Guid.NewGuid()).Take(nombre).ToList();
+        }
+
         public Formation getFormationById(int idFormation)
         {
             //foreach(var f in _formations)
