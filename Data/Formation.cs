@@ -12,5 +12,7 @@ namespace Data
         public string NomSEO { get; set; }
 
         public string Description { get; set; }
+
+        public List<Avis> Avis { get; set; }
     }
 }

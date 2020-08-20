@@ -10,6 +10,11 @@ namespace AvisFormationCore.UI.Controllers
 {
     public class FormationController : Controller
     {
+        IFormationRepository _repository;
+        public FormationController(IFormationRepository repository)
+        {
+            _repository = repository;
+        }
         public IActionResult Index()
         {
             ToutesLesFormationsViewModel vm = new ToutesLesFormationsViewModel();
@@ -20,8 +25,8 @@ namespace AvisFormationCore.UI.Controllers
 
         public IActionResult ToutesLesFormations()
         {
-            FormationMemoryRepository repository = new FormationMemoryRepository();
-            List<Formation> listFormations = repository.GetAllFormations();
+            
+            List<Formation> listFormations = _repository.GetAllFormations();
             return View(listFormations);
         }
 
@@ -32,8 +37,8 @@ namespace AvisFormationCore.UI.Controllers
             {
                 return RedirectToAction("ToutesLesFormations");
             }
-            FormationMemoryRepository repository = new FormationMemoryRepository();
-            Formation formation = repository.getFormationById(iIdFormation);
+           
+            Formation formation = _repository.getFormationById(iIdFormation);
             if(formation == null)
             {
                 return RedirectToAction("ToutesLesFormations");

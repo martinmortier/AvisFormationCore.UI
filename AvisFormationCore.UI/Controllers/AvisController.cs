@@ -10,12 +10,16 @@ namespace AvisFormationCore.UI.Controllers
 {
     public class AvisController : Controller
     {
+        IFormationRepository _repository;
+        public AvisController(IFormationRepository repository)
+        {
+            _repository = repository;
+        }
         public IActionResult LaisserUnAvis(string idFormation)
         {
             int id = -1;
             int.TryParse(idFormation,out id);
-            FormationMemoryRepository repository = new FormationMemoryRepository();
-            Formation formation = repository.getFormationById(id);
+            Formation formation = _repository.getFormationById(id);
             if(formation == null)
             {
                 return RedirectToAction("ToutesLesFormations","Formation");
