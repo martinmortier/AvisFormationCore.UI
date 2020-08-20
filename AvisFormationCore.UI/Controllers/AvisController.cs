@@ -11,9 +11,11 @@ namespace AvisFormationCore.UI.Controllers
     public class AvisController : Controller
     {
         IFormationRepository _repository;
-        public AvisController(IFormationRepository repository)
+        IAvisRepository _avisRepository;
+        public AvisController(IFormationRepository repository, IAvisRepository avisRepository)
         {
             _repository = repository;
+            _avisRepository = avisRepository;
         }
         public IActionResult LaisserUnAvis(string idFormation)
         {
@@ -41,8 +43,7 @@ namespace AvisFormationCore.UI.Controllers
             {
                 return RedirectToAction("LaisserUnAvis");
             }
-            AvisRepository repository = new AvisRepository();
-            repository.SaveAvis(laisserUnAvisViewModel.commentaire, laisserUnAvisViewModel.nom, laisserUnAvisViewModel.idFormation);
+            _avisRepository.SaveAvis(laisserUnAvisViewModel.commentaire, laisserUnAvisViewModel.nom, laisserUnAvisViewModel.idFormation,laisserUnAvisViewModel.note) ;
             return RedirectToAction("DetailsFormation","Formation",new { idFormation = laisserUnAvisViewModel.idFormation });
         }
     }

@@ -41,6 +41,7 @@ namespace AvisFormationCore.UI
                   Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddTransient<IFormationRepository, FormationRepository>();
+            services.AddTransient<IAvisRepository,AvisRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

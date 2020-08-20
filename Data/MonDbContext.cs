@@ -22,5 +22,6 @@ namespace Data
 
         //    modelBuilder.Entity<Formation>().Property(f => f.Description).HasMaxLength(500);
         //}
+
     }
 }
