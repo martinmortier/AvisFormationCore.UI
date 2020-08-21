@@ -16,6 +16,8 @@ namespace Data
 
         public DbSet<Avis> Avis { get; set; }
 
+        public DbSet<ContactMessage> Messages { get; set; }
+
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
         //{
 
